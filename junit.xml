@@ -1,23 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuites name="jest tests" tests="6" failures="0" errors="0" time="0.271">
-  <testsuite name="#TicketService" errors="0" failures="0" skipped="0" timestamp="2025-09-14T21:04:53" time="0.182" tests="2">
+<testsuites name="jest tests" tests="8" failures="0" errors="0" time="0.302">
+  <testsuite name="#TicketService" errors="0" failures="0" skipped="0" timestamp="2025-09-14T21:11:09" time="0.171" tests="2">
     <testcase classname="#TicketService building the ticket request object should call getTotalTicketsByType to get a ticket request object" name="#TicketService building the ticket request object should call getTotalTicketsByType to get a ticket request object" time="0.001">
-    </testcase>
-    <testcase classname="#TicketService building the ticket request object log the booking details before calling the validation service" name="#TicketService building the ticket request object log the booking details before calling the validation service" time="0.001">
-    </testcase>
-  </testsuite>
-  <testsuite name="#CalculationService" errors="0" failures="0" skipped="0" timestamp="2025-09-14T21:04:53" time="0.016" tests="1">
-    <testcase classname="#CalculationService #getTotalTicketsByType should return a valid ticket request object" name="#CalculationService #getTotalTicketsByType should return a valid ticket request object" time="0">
-    </testcase>
-  </testsuite>
-  <testsuite name="#TicketService" errors="0" failures="0" skipped="0" timestamp="2025-09-14T21:04:53" time="0.033" tests="2">
-    <testcase classname="#TicketService building the ticket request object should call getTotalTicketsByType to get a ticket request object" name="#TicketService building the ticket request object should call getTotalTicketsByType to get a ticket request object" time="0">
     </testcase>
     <testcase classname="#TicketService building the ticket request object log the booking details before calling the validation service" name="#TicketService building the ticket request object log the booking details before calling the validation service" time="0">
     </testcase>
   </testsuite>
-  <testsuite name="#CalculationService" errors="0" failures="0" skipped="0" timestamp="2025-09-14T21:04:53" time="0.012" tests="1">
+  <testsuite name="#CalculationService" errors="0" failures="0" skipped="0" timestamp="2025-09-14T21:11:10" time="0.016" tests="1">
     <testcase classname="#CalculationService #getTotalTicketsByType should return a valid ticket request object" name="#CalculationService #getTotalTicketsByType should return a valid ticket request object" time="0">
+    </testcase>
+  </testsuite>
+  <testsuite name="#RequestValidationService" errors="0" failures="0" skipped="0" timestamp="2025-09-14T21:11:10" time="0.008" tests="1">
+    <testcase classname="#RequestValidationService when the account ID is valid does not throw an error" name="#RequestValidationService when the account ID is valid does not throw an error" time="0">
+    </testcase>
+  </testsuite>
+  <testsuite name="#CalculationService" errors="0" failures="0" skipped="0" timestamp="2025-09-14T21:11:10" time="0.007" tests="1">
+    <testcase classname="#CalculationService #getTotalTicketsByType should return a valid ticket request object" name="#CalculationService #getTotalTicketsByType should return a valid ticket request object" time="0">
+    </testcase>
+  </testsuite>
+  <testsuite name="#RequestValidationService" errors="0" failures="0" skipped="0" timestamp="2025-09-14T21:11:10" time="0.034" tests="1">
+    <testcase classname="#RequestValidationService when the account ID is valid does not throw an error" name="#RequestValidationService when the account ID is valid does not throw an error" time="0.001">
+    </testcase>
+  </testsuite>
+  <testsuite name="#TicketService" errors="0" failures="0" skipped="0" timestamp="2025-09-14T21:11:10" time="0.028" tests="2">
+    <testcase classname="#TicketService building the ticket request object should call getTotalTicketsByType to get a ticket request object" name="#TicketService building the ticket request object should call getTotalTicketsByType to get a ticket request object" time="0">
+    </testcase>
+    <testcase classname="#TicketService building the ticket request object log the booking details before calling the validation service" name="#TicketService building the ticket request object log the booking details before calling the validation service" time="0.001">
     </testcase>
   </testsuite>
 </testsuites>
