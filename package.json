@@ -20,7 +20,7 @@
   },
   "license": "ISC",
   "author": "John Ainsworth",
-  "type": "commonjs",
+  "type": "module",
   "main": "index.js",
   "scripts": {
     "test": "test",
