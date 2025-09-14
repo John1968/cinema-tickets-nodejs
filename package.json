@@ -24,5 +24,11 @@
   "main": "index.js",
   "scripts": {
     "test": "test"
+  },
+  "devDependencies": {
+    "@dwp/eslint-config-base": "^6.0.0",
+    "@jest/globals": "^30.1.2",
+    "eslint": "^9.35.0",
+    "jest": "^30.1.3"
   }
 }
