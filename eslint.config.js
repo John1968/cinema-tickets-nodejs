@@ -1,6 +1,5 @@
-const { FlatCompat } = require('@eslint/eslintrc');
-const dwpConfigBase = require('@dwp/eslint-config-base')
-
+const dwpConfigBase = require('@dwp/eslint-config-base');
+const globals = require('globals');
 
 module.exports [{
     ...dwpConfigBase,
@@ -10,8 +9,7 @@ module.exports [{
             ...globals.node,
         },
     },
-
     rules: {
-       'no-console':'off',
+        'no-console':'off',
     },
 }];
