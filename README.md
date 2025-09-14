@@ -54,3 +54,10 @@ I will follow a test driven development (TDD) approach in writing this applicati
 This approach will helped to ensure the requirements of the brief have been achieved.
 
 I have used the Jest testing framework for both the unit tests and coverage.
+
+## Code Quality
+For code quality, I have used `eslint` and `@dwp/eslint-config-base` to lint code using DWP standards for NodeJS.
+
+To run the lint tests, use the following command:
+
+```npm run quality:eslint```
