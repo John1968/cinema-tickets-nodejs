@@ -1,0 +1,28 @@
+{
+  "name": "cinema-tickets-nodejs",
+  "version": "1.0.0",
+  "description": "A NodeJS service to price and reserve cinema seat bookings for up to 25 people.",
+  "keywords": [
+    "cinema",
+    "seat",
+    "booking",
+    "price",
+    "nodejs",
+    "service"
+  ],
+  "homepage": "https://github.com/John1968/cinema-tickets-nodejs#readme",
+  "bugs": {
+    "url": "https://github.com/John1968/cinema-tickets-nodejs/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/John1968/cinema-tickets-nodejs.git"
+  },
+  "license": "ISC",
+  "author": "John Ainsworth",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  }
+}

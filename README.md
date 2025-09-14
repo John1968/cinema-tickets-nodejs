@@ -7,7 +7,7 @@ You will be assessed on:
 - How you have ensured the following business rules are correctly met.
 
 
-## Business Rules
+# Business Rules
 - There are 3 types of tickets i.e. Infant, Child, and Adult.
 - The ticket prices are based on the type of ticket (see table below).
 - The ticket purchaser declares how many and what type of tickets they want to buy.
@@ -18,7 +18,7 @@ You will be assessed on:
 - There is an existing `TicketPaymentService` responsible for taking payments.
 - There is an existing `SeatReservationService` responsible for reserving seats.
 
-### Pricing
+## Pricing
 The pricing for each tier of ticket is shown below:
 |   Ticket Type    |     Price   |
 | ---------------- | ----------- |
@@ -26,12 +26,12 @@ The pricing for each tier of ticket is shown below:
 |    CHILD         |    £15     |
 |    ADULT         |    £25      |
 
-### Constraints
+## Constraints
 - The TicketService interface CANNOT be modified. 
 - The code in the thirdparty.* packages CANNOT be modified.
 - The `TicketTypeRequest` SHOULD be an immutable object.
 
-### Assumptions
+## Assumptions
 - All accounts with an id greater than zero are valid. They also have sufficient funds to pay for any no of tickets.
 - The `TicketPaymentService` implementation is an external provider with no defects. You do not need to worry about how the actual payment happens.
 - The payment will always go through once a payment request has been made to the `TicketPaymentService`.
@@ -39,9 +39,18 @@ The pricing for each tier of ticket is shown below:
 - The seat will always be reserved once a reservation request has been made to the `SeatReservationService`.
 - In addition to the business rules described above, only one infant ticket per adult ticket can be purchased.
 
-### The Task
+## The Task
 In this exercise I will provide a working implementation of a `TicketService` that:
 - Considers the above objective, business rules, constraints & assumptions.
 - Calculates the correct amount for the requested tickets and makes a payment request to the `TicketPaymentService`.  
 - Calculates the correct no of seats to reserve and makes a seat reservation request to the `SeatReservationService`.  
 - Rejects any invalid ticket purchase requests. It is up to you to identify what should be deemed as an invalid purchase request
+
+# Approach
+I have set out my approach to the exercise including testing for functionality and code quality
+
+## Testing
+I will follow a test driven development (TDD) approach in writing this application.
+This approach will helped to ensure the requirements of the brief have been achieved.
+
+I have used the Jest testing framework for both the unit tests and coverage.
