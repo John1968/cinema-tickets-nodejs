@@ -1,4 +1,4 @@
-import { describe, expect } from'@jest/globals';
+import { describe, expect, it } from'@jest/globals';
 import RequestValidationService from '../../src/pairtest/lib/RequestValidationService';
 import InvalidPurchaseException from '../../src/pairtest/lib/InvalidPurchaseException';
 import TicketTypeRequest from '../../src/pairtest/lib/TicketTypeRequest.js';
@@ -54,9 +54,48 @@ describe('#RequestValidationService', () => {
 		describe('when the ticket request is missing or invalid', () => {
 			it('throws an error if no ticket requests are provided', () => {
 				expect(() => requestValidationService.ticketTypeRequestValidator(null))
-					.toThrow(new InvalidPurchaseException(ERROR_MAP.NO_TICKETS_IN_BOOKING));
+					.toThrow(new InvalidPurchaseException(ERROR_MAP.INVALID_PARAMETERS));
+			});
+			it('throws an error if an empty array is provided', () => {
+				expect(() => requestValidationService.ticketTypeRequestValidator([]))
+					.toThrow(new InvalidPurchaseException(ERROR_MAP.INVALID_PARAMETERS));
+			});
+			it('throws an error if an undefined value is provided', () => {
+				expect(() => requestValidationService.ticketTypeRequestValidator(undefined))
+					.toThrow(new InvalidPurchaseException(ERROR_MAP.INVALID_PARAMETERS));
+			});
+			it('throws an error if a non-array value is provided', () => {
+				expect(() => requestValidationService.ticketTypeRequestValidator('not an array'))
+					.toThrow(new InvalidPurchaseException(ERROR_MAP.INVALID_PARAMETERS));
+			});
+			it('throws an error if a number is provided', () => {
+				expect(() => requestValidationService.ticketTypeRequestValidator(12345))
+					.toThrow(new InvalidPurchaseException(ERROR_MAP.INVALID_PARAMETERS));
+			});
+			it('throws an error if an object is provided', () => {
+				expect(() => requestValidationService.ticketTypeRequestValidator({key: 'value'}))
+					.toThrow(new InvalidPurchaseException(ERROR_MAP.INVALID_PARAMETERS));
+			});
+			it('throws an error if a boolean is provided', () => {
+				expect(() => requestValidationService.ticketTypeRequestValidator(true))
+					.toThrow(new InvalidPurchaseException(ERROR_MAP.INVALID_PARAMETERS));
+			});
+			it('throws an error if the total number of tickets exceeds the maximum allowed', () => {
+				const adultTicketRequest = new TicketTypeRequest('ADULT', 26);
+				expect(() => requestValidationService.ticketTypeRequestValidator([adultTicketRequest]))
+					.toThrow(new InvalidPurchaseException(ERROR_MAP.MAX_TICKETS_EXCEEDED));
+			});
+			it('throws an error if no adult tickets are included in the request', () => {
+				const childTicketRequest = new TicketTypeRequest('CHILD', 5);
+				expect(() => requestValidationService.ticketTypeRequestValidator([childTicketRequest]))
+					.toThrow(new InvalidPurchaseException(ERROR_MAP.ADULT_TICKET_REQUIRED));
+			});
+			it('throws an error if there are more infants than adults in the request', () => {
+				const adultTicketRequest = new TicketTypeRequest('ADULT', 1);
+				const infantTicketRequest = new TicketTypeRequest('INFANT', 2);
+				expect(() => requestValidationService.ticketTypeRequestValidator([adultTicketRequest, infantTicketRequest]))
+					.toThrow(new InvalidPurchaseException(ERROR_MAP.INFANT_WITHOUT_ADULT));
 			});
 		});
-		
 	});
 });

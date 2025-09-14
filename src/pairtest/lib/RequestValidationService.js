@@ -27,12 +27,29 @@ export default class RequestValidationService {
         let ticketsByType;
         let totalTicketsRequired;
         this.calculationService = new CalculationService();
-        if(ticketTypeRequests == null || ticketTypeRequests.length === 0) {
-            message = ERROR_MAP.NO_TICKETS_IN_BOOKING;
+        
+        if(ticketTypeRequests == null || ticketTypeRequests.length === 0 || !Array.isArray(ticketTypeRequests)) {
+            message = ERROR_MAP.INVALID_PARAMETERS;
+        } else {
+            ticketsByType = calculationService.getTotalTicketsByType(ticketTypeRequests);
+            totalTicketsRequired = calculationService.getTotalTicketCount(ticketsByType);
+            if(totalTicketsRequired < MIN_TICKETS) {
+                message = ERROR_MAP.NO_TICKETS_IN_BOOKING;
+            }
+            if(totalTicketsRequired > MAX_TICKETS) {
+                message = ERROR_MAP.MAX_TICKETS_EXCEEDED;
+            }
+            if(ticketsByType.ADULT < 1) {
+                message = ERROR_MAP.ADULT_TICKET_REQUIRED;
+            }
+            if(ticketsByType.INFANT > ticketsByType.ADULT) {
+                message = ERROR_MAP.INFANT_WITHOUT_ADULT;
+            }
         }
+
         if(message) {
             throw new InvalidPurchaseException(message);
-        }
+        };
         return ticketsByType;
     }
 };
