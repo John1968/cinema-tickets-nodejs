@@ -1,8 +1,8 @@
-import { BASE_RESERVATION_OBJECT, TICKET_COST_BY_TYPE } from './Config';
-import logger from '../lib/logger'
+import { BASE_RESERVATION_OBJECT, } from './Config';
 export default class CalculationService {
-
     getTotalTicketsByType(ticketTypeRequests) {
-        logger.info('CalculationService class loaded');
+        const newTicketRequestObject = structuredClone(BASE_RESERVATION_OBJECT);
+        ticketTypeRequests.forEach((request) => newTicketRequestObject[request.getTicketType()] += request.getNoOfTickets());
+        return newTicketRequestObject;
     };
 };
