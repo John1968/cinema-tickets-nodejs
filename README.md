@@ -60,4 +60,4 @@ For code quality, I have used `eslint` and `@dwp/eslint-config-base` to lint cod
 
 To run the lint tests, use the following command:
 
-```npm run quality:eslint```
+```npm run quality:lint```
