@@ -11,6 +11,9 @@ export default class RequestValidationService {
         if(accountId < 1) {
             message = ERROR_MAP.ACCOUNT_ID_LESS_THAN_ONE;
         }
+        if(accountId === undefined) {
+            message = ERROR_MAP.ACCOUNT_ID_UNDEFINED;
+        }
         if(accountId === null) {
             message = ERROR_MAP.ACCOUNT_ID_NOT_PROVIDED;
         }

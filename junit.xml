@@ -1,46 +1,58 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuites name="jest tests" tests="16" failures="0" errors="0" time="0.299">
-  <testsuite name="#TicketService" errors="0" failures="0" skipped="0" timestamp="2025-09-14T21:18:46" time="0.178" tests="2">
+<testsuites name="jest tests" tests="22" failures="0" errors="0" time="0.289">
+  <testsuite name="#TicketService" errors="0" failures="0" skipped="0" timestamp="2025-09-14T21:44:26" time="0.154" tests="2">
     <testcase classname="#TicketService building the ticket request object should call getTotalTicketsByType to get a ticket request object" name="#TicketService building the ticket request object should call getTotalTicketsByType to get a ticket request object" time="0.001">
     </testcase>
-    <testcase classname="#TicketService building the ticket request object log the booking details before calling the validation service" name="#TicketService building the ticket request object log the booking details before calling the validation service" time="0.001">
+    <testcase classname="#TicketService building the ticket request object log the booking details before calling the validation service" name="#TicketService building the ticket request object log the booking details before calling the validation service" time="0">
     </testcase>
   </testsuite>
-  <testsuite name="#CalculationService" errors="0" failures="0" skipped="0" timestamp="2025-09-14T21:18:46" time="0.016" tests="1">
-    <testcase classname="#CalculationService #getTotalTicketsByType should return a valid ticket request object" name="#CalculationService #getTotalTicketsByType should return a valid ticket request object" time="0">
+  <testsuite name="#RequestValidationService" errors="0" failures="0" skipped="0" timestamp="2025-09-14T21:44:26" time="0.041" tests="8">
+    <testcase classname="#RequestValidationService #requestIdValidator when the account ID is valid does not throw an error" name="#RequestValidationService #requestIdValidator when the account ID is valid does not throw an error" time="0">
+    </testcase>
+    <testcase classname="#RequestValidationService #requestIdValidator when the account ID is missing or invalid throws an error if the account ID is a string" name="#RequestValidationService #requestIdValidator when the account ID is missing or invalid throws an error if the account ID is a string" time="0.002">
+    </testcase>
+    <testcase classname="#RequestValidationService #requestIdValidator when the account ID is missing or invalid throws an error if the account ID contains symbols" name="#RequestValidationService #requestIdValidator when the account ID is missing or invalid throws an error if the account ID contains symbols" time="0.001">
+    </testcase>
+    <testcase classname="#RequestValidationService #requestIdValidator when the account ID is missing or invalid throws an error if the account ID is a floating point number" name="#RequestValidationService #requestIdValidator when the account ID is missing or invalid throws an error if the account ID is a floating point number" time="0">
+    </testcase>
+    <testcase classname="#RequestValidationService #requestIdValidator when the account ID is missing or invalid throws an error if the account ID is 0" name="#RequestValidationService #requestIdValidator when the account ID is missing or invalid throws an error if the account ID is 0" time="0">
+    </testcase>
+    <testcase classname="#RequestValidationService #requestIdValidator when the account ID is missing or invalid throws an error if the account ID is a negative number" name="#RequestValidationService #requestIdValidator when the account ID is missing or invalid throws an error if the account ID is a negative number" time="0">
+    </testcase>
+    <testcase classname="#RequestValidationService #requestIdValidator when the account ID is missing or invalid throws an error if the account ID is undefined" name="#RequestValidationService #requestIdValidator when the account ID is missing or invalid throws an error if the account ID is undefined" time="0.001">
+    </testcase>
+    <testcase classname="#RequestValidationService #requestIdValidator when the account ID is missing or invalid throws an error if an account ID is not provided" name="#RequestValidationService #requestIdValidator when the account ID is missing or invalid throws an error if an account ID is not provided" time="0">
     </testcase>
   </testsuite>
-  <testsuite name="#RequestValidationService" errors="0" failures="0" skipped="0" timestamp="2025-09-14T21:18:46" time="0.02" tests="5">
-    <testcase classname="#RequestValidationService when the account ID is valid does not throw an error" name="#RequestValidationService when the account ID is valid does not throw an error" time="0">
-    </testcase>
-    <testcase classname="#RequestValidationService when the account ID is missing or invalid throws an error if the account ID is not a number" name="#RequestValidationService when the account ID is missing or invalid throws an error if the account ID is not a number" time="0.003">
-    </testcase>
-    <testcase classname="#RequestValidationService when the account ID is missing or invalid throws an error if the account ID is a floating point number" name="#RequestValidationService when the account ID is missing or invalid throws an error if the account ID is a floating point number" time="0">
-    </testcase>
-    <testcase classname="#RequestValidationService when the account ID is missing or invalid throws an error if the account ID is 0" name="#RequestValidationService when the account ID is missing or invalid throws an error if the account ID is 0" time="0">
-    </testcase>
-    <testcase classname="#RequestValidationService when the account ID is missing or invalid throws an error if an account ID is not provided" name="#RequestValidationService when the account ID is missing or invalid throws an error if an account ID is not provided" time="0">
+  <testsuite name="#CalculationService" errors="0" failures="0" skipped="0" timestamp="2025-09-14T21:44:26" time="0.009" tests="1">
+    <testcase classname="#CalculationService #getTotalTicketsByType should return a valid ticket request object" name="#CalculationService #getTotalTicketsByType should return a valid ticket request object" time="0.001">
     </testcase>
   </testsuite>
-  <testsuite name="#RequestValidationService" errors="0" failures="0" skipped="0" timestamp="2025-09-14T21:18:46" time="0.013" tests="5">
-    <testcase classname="#RequestValidationService when the account ID is valid does not throw an error" name="#RequestValidationService when the account ID is valid does not throw an error" time="0">
-    </testcase>
-    <testcase classname="#RequestValidationService when the account ID is missing or invalid throws an error if the account ID is not a number" name="#RequestValidationService when the account ID is missing or invalid throws an error if the account ID is not a number" time="0.001">
-    </testcase>
-    <testcase classname="#RequestValidationService when the account ID is missing or invalid throws an error if the account ID is a floating point number" name="#RequestValidationService when the account ID is missing or invalid throws an error if the account ID is a floating point number" time="0.001">
-    </testcase>
-    <testcase classname="#RequestValidationService when the account ID is missing or invalid throws an error if the account ID is 0" name="#RequestValidationService when the account ID is missing or invalid throws an error if the account ID is 0" time="0">
-    </testcase>
-    <testcase classname="#RequestValidationService when the account ID is missing or invalid throws an error if an account ID is not provided" name="#RequestValidationService when the account ID is missing or invalid throws an error if an account ID is not provided" time="0">
-    </testcase>
-  </testsuite>
-  <testsuite name="#TicketService" errors="0" failures="0" skipped="0" timestamp="2025-09-14T21:18:46" time="0.026" tests="2">
+  <testsuite name="#TicketService" errors="0" failures="0" skipped="0" timestamp="2025-09-14T21:44:26" time="0.023" tests="2">
     <testcase classname="#TicketService building the ticket request object should call getTotalTicketsByType to get a ticket request object" name="#TicketService building the ticket request object should call getTotalTicketsByType to get a ticket request object" time="0">
     </testcase>
     <testcase classname="#TicketService building the ticket request object log the booking details before calling the validation service" name="#TicketService building the ticket request object log the booking details before calling the validation service" time="0">
     </testcase>
   </testsuite>
-  <testsuite name="#CalculationService" errors="0" failures="0" skipped="0" timestamp="2025-09-14T21:18:46" time="0.008" tests="1">
+  <testsuite name="#RequestValidationService" errors="0" failures="0" skipped="0" timestamp="2025-09-14T21:44:26" time="0.015" tests="8">
+    <testcase classname="#RequestValidationService #requestIdValidator when the account ID is valid does not throw an error" name="#RequestValidationService #requestIdValidator when the account ID is valid does not throw an error" time="0">
+    </testcase>
+    <testcase classname="#RequestValidationService #requestIdValidator when the account ID is missing or invalid throws an error if the account ID is a string" name="#RequestValidationService #requestIdValidator when the account ID is missing or invalid throws an error if the account ID is a string" time="0.002">
+    </testcase>
+    <testcase classname="#RequestValidationService #requestIdValidator when the account ID is missing or invalid throws an error if the account ID contains symbols" name="#RequestValidationService #requestIdValidator when the account ID is missing or invalid throws an error if the account ID contains symbols" time="0">
+    </testcase>
+    <testcase classname="#RequestValidationService #requestIdValidator when the account ID is missing or invalid throws an error if the account ID is a floating point number" name="#RequestValidationService #requestIdValidator when the account ID is missing or invalid throws an error if the account ID is a floating point number" time="0">
+    </testcase>
+    <testcase classname="#RequestValidationService #requestIdValidator when the account ID is missing or invalid throws an error if the account ID is 0" name="#RequestValidationService #requestIdValidator when the account ID is missing or invalid throws an error if the account ID is 0" time="0">
+    </testcase>
+    <testcase classname="#RequestValidationService #requestIdValidator when the account ID is missing or invalid throws an error if the account ID is a negative number" name="#RequestValidationService #requestIdValidator when the account ID is missing or invalid throws an error if the account ID is a negative number" time="0">
+    </testcase>
+    <testcase classname="#RequestValidationService #requestIdValidator when the account ID is missing or invalid throws an error if the account ID is undefined" name="#RequestValidationService #requestIdValidator when the account ID is missing or invalid throws an error if the account ID is undefined" time="0">
+    </testcase>
+    <testcase classname="#RequestValidationService #requestIdValidator when the account ID is missing or invalid throws an error if an account ID is not provided" name="#RequestValidationService #requestIdValidator when the account ID is missing or invalid throws an error if an account ID is not provided" time="0">
+    </testcase>
+  </testsuite>
+  <testsuite name="#CalculationService" errors="0" failures="0" skipped="0" timestamp="2025-09-14T21:44:26" time="0.012" tests="1">
     <testcase classname="#CalculationService #getTotalTicketsByType should return a valid ticket request object" name="#CalculationService #getTotalTicketsByType should return a valid ticket request object" time="0">
     </testcase>
   </testsuite>

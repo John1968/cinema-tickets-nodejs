@@ -1,1 +1,10 @@
+# build
+.DS_Store
+.vscode
+
+# dependencies
 node_modules
+
+# testing
+junit.xml
+coverage/
