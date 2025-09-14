@@ -21,4 +21,18 @@ export default class RequestValidationService {
             throw new InvalidPurchaseException(message);
         }
     };
+    ticketTypeRequestValidator(ticketTypeRequests) {
+        const calculationService = new CalculationService();
+        let message;
+        let ticketsByType;
+        let totalTicketsRequired;
+        this.calculationService = new CalculationService();
+        if(ticketTypeRequests == null || ticketTypeRequests.length === 0) {
+            message = ERROR_MAP.NO_TICKETS_IN_BOOKING;
+        }
+        if(message) {
+            throw new InvalidPurchaseException(message);
+        }
+        return ticketsByType;
+    }
 };

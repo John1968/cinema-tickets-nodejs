@@ -14,4 +14,11 @@ describe('#CalculationService', () => {
             expect(result).toEqual({"ADULT": 2, "CHILD": 0, "INFANT": 1});
         });
     });
+    describe('#getTotalTicketCount', () => {
+        const ticketsByType = {"ADULT": 2, "CHILD": 0, "INFANT": 1};
+        const result = calculationService.getTotalTicketCount(ticketsByType);
+        it('should return the total number of tickets', () => {
+            expect(result).toEqual(3);
+        });
+    });
 });

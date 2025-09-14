@@ -1,8 +1,8 @@
 import { describe, expect } from'@jest/globals';
 import RequestValidationService from '../../src/pairtest/lib/RequestValidationService';
 import InvalidPurchaseException from '../../src/pairtest/lib/InvalidPurchaseException';
+import TicketTypeRequest from '../../src/pairtest/lib/TicketTypeRequest.js';
 import { ERROR_MAP } from '../../src/pairtest/lib/Config';
-
 describe('#RequestValidationService', () => {
 	let requestValidationService = new RequestValidationService();
 	describe('#requestIdValidator', () => {
@@ -43,5 +43,20 @@ describe('#RequestValidationService', () => {
 			});
 		});
 	});
-	
+	describe('#ticketTypeRequestValidator', () => {
+		describe('when the ticket request is valid', () => {
+				it('does not throw an error', () => {
+						const adultTicketRequest = new TicketTypeRequest('ADULT', 2);
+						expect(() => requestValidationService.ticketTypeRequestValidator([adultTicketRequest]))
+							.not.toThrow();
+				});
+		});
+		describe('when the ticket request is missing or invalid', () => {
+			it('throws an error if no ticket requests are provided', () => {
+				expect(() => requestValidationService.ticketTypeRequestValidator(null))
+					.toThrow(new InvalidPurchaseException(ERROR_MAP.NO_TICKETS_IN_BOOKING));
+			});
+		});
+		
+	});
 });

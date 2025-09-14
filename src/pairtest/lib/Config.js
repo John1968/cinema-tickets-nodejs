@@ -20,4 +20,5 @@ export const ERROR_MAP = {
     ACCOUNT_ID_IS_NOT_A_NUMBER: 'The account ID must be an integer',
     ACCOUNT_ID_NOT_PROVIDED: 'An account ID must be provided',
     ACCOUNT_ID_UNDEFINED: 'Account ID cannot be undefined',
+    NO_TICKETS_IN_BOOKING: 'There must be a minimum of 1 ticket per booking',
 }

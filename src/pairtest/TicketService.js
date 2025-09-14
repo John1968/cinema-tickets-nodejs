@@ -24,7 +24,7 @@ export default class TicketService {
     logger.info(`About to validate ticket request for Account: ${accountId}. Booking comprises ${this.#ticketsByType.ADULT} adult(s), ${this.#ticketsByType.CHILD} child(ren) and ${this.#ticketsByType.INFANT} infant(s)`)
 		// call validation service
 		this.#requestValidationService.requestIdValidator(accountId);
-		// this.#requestValidationService.ticketTypeRequestValidator(ticketTypeRequests);
+		this.#requestValidationService.ticketTypeRequestValidator(ticketTypeRequests);
     // throws InvalidPurchaseException
   }
 }
