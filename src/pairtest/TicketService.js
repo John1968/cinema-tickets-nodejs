@@ -22,9 +22,16 @@ export default class TicketService {
 		// build ticket request object
 		this.#ticketsByType = this.#calculationService.getTotalTicketsByType(ticketTypeRequests);
     logger.info(`About to validate ticket request for Account: ${accountId}. Booking comprises ${this.#ticketsByType.ADULT} adult(s), ${this.#ticketsByType.CHILD} child(ren) and ${this.#ticketsByType.INFANT} infant(s)`)
-		// call validation service
+		try {
+			// validate the input parameters
 		this.#requestValidationService.requestIdValidator(accountId);
 		this.#requestValidationService.ticketTypeRequestValidator(ticketTypeRequests);
+
+		} catch(err) {
+      logger.error(err.message);
+      throw new InvalidPurchaseException(err.message)
+		}
+		
     // throws InvalidPurchaseException
   }
 }

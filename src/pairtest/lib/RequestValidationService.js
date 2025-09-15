@@ -8,16 +8,16 @@ export default class RequestValidationService {
         if (!Number.isInteger(accountId)) {
             message = ERROR_MAP.ACCOUNT_ID_IS_NOT_A_NUMBER;
         }
-        if(accountId < 1) {
+        if (accountId < 1) {
             message = ERROR_MAP.ACCOUNT_ID_LESS_THAN_ONE;
         }
-        if(accountId === undefined) {
+        if (accountId === undefined) {
             message = ERROR_MAP.ACCOUNT_ID_UNDEFINED;
         }
-        if(accountId === null) {
+        if (accountId === null) {
             message = ERROR_MAP.ACCOUNT_ID_NOT_PROVIDED;
         }
-        if(message) {
+        if (message) {
             throw new InvalidPurchaseException(message);
         }
     };
@@ -27,27 +27,27 @@ export default class RequestValidationService {
         let ticketsByType;
         let totalTicketsRequired;
         this.calculationService = new CalculationService();
-        
-        if(ticketTypeRequests == null || ticketTypeRequests.length === 0 || !Array.isArray(ticketTypeRequests)) {
+
+        if (ticketTypeRequests == null || ticketTypeRequests.length === 0 || !Array.isArray(ticketTypeRequests)) {
             message = ERROR_MAP.INVALID_PARAMETERS;
         } else {
             ticketsByType = calculationService.getTotalTicketsByType(ticketTypeRequests);
             totalTicketsRequired = calculationService.getTotalTicketCount(ticketsByType);
-            if(totalTicketsRequired < MIN_TICKETS) {
+            if (totalTicketsRequired < MIN_TICKETS) {
                 message = ERROR_MAP.NO_TICKETS_IN_BOOKING;
             }
-            if(totalTicketsRequired > MAX_TICKETS) {
+            if (totalTicketsRequired > MAX_TICKETS) {
                 message = ERROR_MAP.MAX_TICKETS_EXCEEDED;
             }
-            if(ticketsByType.ADULT < 1) {
+            if (ticketsByType.ADULT < 1) {
                 message = ERROR_MAP.ADULT_TICKET_REQUIRED;
             }
-            if(ticketsByType.INFANT > ticketsByType.ADULT) {
+            if (ticketsByType.INFANT > ticketsByType.ADULT) {
                 message = ERROR_MAP.INFANT_WITHOUT_ADULT;
             }
         }
 
-        if(message) {
+        if (message) {
             throw new InvalidPurchaseException(message);
         };
         return ticketsByType;
