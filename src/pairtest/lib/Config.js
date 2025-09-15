@@ -22,6 +22,7 @@ export const ERROR_MAP = {
     ACCOUNT_ID_UNDEFINED: 'Account ID cannot be undefined',
     INVALID_PARAMETERS: 'Invalid parameters passed to the service',
     NO_TICKETS_IN_BOOKING: 'There must be a minimum of 1 ticket per booking',
+    NO_OF_SEATS_IS_NOT_AN_INTEGER: 'totalSeatsToAllocate must be an integer',
     MAX_TICKETS_EXCEEDED: `The maximum number of tickets per booking is ${MAX_TICKETS}`,
     ADULT_TICKET_REQUIRED: 'At least one adult ticket must be purchased',
     INFANT_WITHOUT_ADULT: 'Each infant must be accompanied by an adult',

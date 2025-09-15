@@ -3,6 +3,7 @@
 import TicketService from '../src/pairtest/TicketService';
 import InvalidPurchaseException from '../src/pairtest/lib/InvalidPurchaseException';
 import { ERROR_MAP } from '../src/pairtest/lib/Config';
+import SeatReservationService from '../src/thirdparty/seatbooking/SeatReservationService';
 import CalculationService from '../src/pairtest/lib/CalculationService';
 import RequestValidationService from '../src/pairtest/lib/RequestValidationService';
 import logger from '../src/pairtest/lib/logger'
@@ -12,6 +13,7 @@ import { expect } from '@jest/globals';
 
 jest.mock('../src/pairtest/lib/logger');
 jest.mock('../src/pairtest/lib/CalculationService');
+jest.mock('../src/thirdparty/seatbooking/SeatReservationService');
 describe('#TicketService', () => {
 	let ticketService;
 	describe('building the ticket request object', () => {
@@ -26,6 +28,8 @@ describe('#TicketService', () => {
 				.mockImplementation(() => {
 					return mockTicketsByType
 				});
+			// jest.spyOn(SeatReservationService.prototype, 'reserveSeat')
+			// 	.mockImplementation(() => { });
 			const accountId = 12345
 			const fakeAdultTicketRequest = new TicketTypeRequest('ADULT', 1);
 			const fakeChildTicketRequest = new TicketTypeRequest('CHILD', 1);
@@ -166,6 +170,56 @@ describe('#TicketService', () => {
 			const ticketService = new TicketService()
 			expect(() => ticketService.purchaseTickets(accountId, fakeAdultTicketRequest, fakeInfantTicketRequest)).toThrow(new InvalidPurchaseException(ERROR_MAP.INFANT_WITHOUT_ADULT))
 			expect(logger.error).toHaveBeenCalledWith(ERROR_MAP.INFANT_WITHOUT_ADULT);
+		});
+	});
+	describe('seat reservation', () => {
+		beforeEach(() => {
+			jest.clearAllMocks()
+			ticketService = new TicketService();
+		});
+		afterEach(() => {
+			jest.resetAllMocks();
+		});
+		it('reserves a seat for each adult and child', () => {
+			const mockTicketsByType = { "ADULT": 1, "CHILD": 0, "INFANT": 0 };
+			jest.spyOn(CalculationService.prototype, 'getTotalTicketsByType')
+				.mockImplementation(() => {
+					return mockTicketsByType
+				});
+			const getTotalSeatsMock = jest
+				.spyOn(CalculationService.prototype, 'getTotalSeats')
+				.mockImplementation(() => {
+					return 2;
+				});
+			const seatReservationServiceMock = jest
+				.spyOn(SeatReservationService.prototype, 'reserveSeat')
+				.mockImplementation(() => { });
+			const accountId = 111;
+			const fakeAdultTicketRequest = new TicketTypeRequest('ADULT', 2);
+			const expectedSeatReservations = 2
+			ticketService.purchaseTickets(accountId, fakeAdultTicketRequest)
+			expect(getTotalSeatsMock).toHaveBeenCalledWith(mockTicketsByType);
+			expect(logger.info).toHaveBeenNthCalledWith(2, `about to reserve ${expectedSeatReservations} seat(s) for account ${accountId}`);
+			expect(seatReservationServiceMock).toHaveBeenCalledWith(accountId, expectedSeatReservations)
+		});
+		it('throws an error if the number of seats is not an integer', () => {
+			const mockTicketsByType = { "ADULT": 1, "CHILD": 0, "INFANT": 0 };
+			jest.spyOn(CalculationService.prototype, 'getTotalTicketsByType')
+				.mockImplementation(() => {
+					return mockTicketsByType
+				});
+			jest.spyOn(CalculationService.prototype, 'getTotalSeats')
+				.mockImplementation(() => {
+					return 'fake-string';
+				});
+			jest.spyOn(SeatReservationService.prototype, 'reserveSeat').mockImplementation(() => {
+				throw new InvalidPurchaseException(ERROR_MAP.NO_OF_SEATS_IS_NOT_AN_INTEGER)
+			});
+
+			const accountId = 12345
+			const fakeAdultTicketRequest = new TicketTypeRequest('ADULT', 1);
+			expect(() => ticketService.purchaseTickets(accountId, fakeAdultTicketRequest)).toThrow(new InvalidPurchaseException(ERROR_MAP.NO_OF_SEATS_IS_NOT_AN_INTEGER))
+			expect(logger.error).toHaveBeenCalledWith(ERROR_MAP.NO_OF_SEATS_IS_NOT_AN_INTEGER);
 		});
 	});
 });
