@@ -35,6 +35,7 @@ export default class TicketService {
 			// validate the input parameters
 			this.#requestValidationService.requestIdValidator(accountId);
 			this.#requestValidationService.ticketTypeRequestValidator(ticketTypeRequests);
+			logger.info(`Successfully validated ticket request for Account: ${accountId}. Booking comprises ${this.#ticketsByType.ADULT} adult(s), ${this.#ticketsByType.CHILD} child(ren) and ${this.#ticketsByType.INFANT} infant(s)`);
 
 			// reserve the seats
 			this.#seatsRequired = this.#calculationService.getTotalSeats(this.#ticketsByType);

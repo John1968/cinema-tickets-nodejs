@@ -120,7 +120,7 @@ describe('#TicketService', () => {
 			jest.resetAllMocks();
 		});
 		it('should not throw an InvalidPurchaseException when there are exactly 25 tickets requested', () => {
-			const mockTicketsByType = { "ADULT": 25 };
+			const mockTicketsByType = { "ADULT": 25, "CHILD": 0, "INFANT": 0 };
 			jest.spyOn(CalculationService.prototype, 'getTotalTicketsByType')
 				.mockImplementation(() => {
 					return mockTicketsByType
@@ -133,7 +133,9 @@ describe('#TicketService', () => {
 			const fakeAdultTicketRequest = new TicketTypeRequest('ADULT', 25);
 			const ticketService = new TicketService()
 			expect(() => ticketService.purchaseTickets(accountId, fakeAdultTicketRequest)).not.toThrow(new InvalidPurchaseException(ERROR_MAP.MAX_TICKETS_EXCEEDED))
-			expect(logger.error).not.toHaveBeenCalledWith();
+			expect(logger.error).not.toHaveBeenCalled();
+			expect(logger.info).toHaveBeenNthCalledWith(2, `Successfully validated ticket request for Account: ${accountId}. Booking comprises ${mockTicketsByType.ADULT} adult(s), ${mockTicketsByType.CHILD} child(ren) and ${mockTicketsByType.INFANT} infant(s)`);
+			
 		});
 		it('should throw an InvalidPurchaseException when there are no tickets requested', () => {
 			const mockTicketsByType = {"ADULT": 0, "CHILD": 0, "INFANT": 0};
@@ -217,9 +219,9 @@ describe('#TicketService', () => {
 			const expectedSeatReservations = 2
 			ticketService.purchaseTickets(accountId, fakeAdultTicketRequest)
 			expect(getTotalSeatsMock).toHaveBeenCalledWith(mockTicketsByType);
-			expect(logger.info).toHaveBeenNthCalledWith(2, `About to reserve ${expectedSeatReservations} seat(s) for account ${accountId}`);
+			expect(logger.info).toHaveBeenNthCalledWith(3, `About to reserve ${expectedSeatReservations} seat(s) for account ${accountId}`);
 			expect(seatReservationServiceMock).toHaveBeenCalledWith(accountId, expectedSeatReservations);
-			expect(logger.info).toHaveBeenNthCalledWith(3, `Successfully reserved ${expectedSeatReservations} seat(s) for account ${accountId}`);
+			expect(logger.info).toHaveBeenNthCalledWith(4, `Successfully reserved ${expectedSeatReservations} seat(s) for account ${accountId}`);
 		});
 		it('throws an error if the number of seats is not an integer', () => {
 			const mockTicketsByType = { "ADULT": 1, "CHILD": 0, "INFANT": 0 };
@@ -277,9 +279,9 @@ describe('#TicketService', () => {
 			const fakeAdultTicketRequest = new TicketTypeRequest('ADULT', 2);
 			ticketService.purchaseTickets(accountId, fakeAdultTicketRequest)
 			expect(getTotalTicketsTicketCount).toHaveBeenCalledWith(mockTicketsByType);
-			expect(logger.info).toHaveBeenNthCalledWith(4, `About to purchase ${mockTotalTickets} tickets`);
+			expect(logger.info).toHaveBeenNthCalledWith(5, `About to purchase ${mockTotalTickets} tickets`);
 			expect(getTotalBookingCostMock).toHaveBeenCalledWith(mockTicketsByType);
-			expect(logger.info).toHaveBeenNthCalledWith(5, `Successfully purchased ${mockTotalTickets} tickets for a total cost of £${mockTotalCost}`);
+			expect(logger.info).toHaveBeenNthCalledWith(6, `Successfully purchased ${mockTotalTickets} tickets for a total cost of £${mockTotalCost}`);
 		});
 	});
 	describe('paying for a booking', () => {
@@ -313,9 +315,9 @@ describe('#TicketService', () => {
 			const accountId = 111;
 			const fakeAdultTicketRequest = new TicketTypeRequest('ADULT', 2);
 			ticketService.purchaseTickets(accountId, fakeAdultTicketRequest)
-			expect(logger.info).toHaveBeenNthCalledWith(6, `About to make payment of £${mockTotalCost} for account ${accountId}`);
+			expect(logger.info).toHaveBeenNthCalledWith(7, `About to make payment of £${mockTotalCost} for account ${accountId}`);
 			expect(ticketPaymentServiceMock).toHaveBeenCalledWith(accountId, mockTotalCost);
-			expect(logger.info).toHaveBeenNthCalledWith(7, `Successfully made payment of £${mockTotalCost} for account ${accountId}`);
+			expect(logger.info).toHaveBeenNthCalledWith(8, `Successfully made payment of £${mockTotalCost} for account ${accountId}`);
 		});
 		it('throws an error if the number of seats is not an integer', () => {
 			const mockTicketsByType = { "ADULT": 1, "CHILD": 0, "INFANT": 0 };
