@@ -2,8 +2,9 @@
 
 import TicketService from '../src/pairtest/TicketService';
 import InvalidPurchaseException from '../src/pairtest/lib/InvalidPurchaseException';
-import { ERROR_MAP } from '../src/pairtest/lib/Config';
+import { ERROR_MAP, TICKET_COST_BY_TYPE } from '../src/pairtest/lib/Config';
 import SeatReservationService from '../src/thirdparty/seatbooking/SeatReservationService';
+import TicketPaymentService from '../src/thirdparty/paymentgateway/TicketPaymentService';
 import CalculationService from '../src/pairtest/lib/CalculationService';
 import RequestValidationService from '../src/pairtest/lib/RequestValidationService';
 import logger from '../src/pairtest/lib/logger'
@@ -14,6 +15,7 @@ import { expect } from '@jest/globals';
 jest.mock('../src/pairtest/lib/logger');
 jest.mock('../src/pairtest/lib/CalculationService');
 jest.mock('../src/thirdparty/seatbooking/SeatReservationService');
+jest.mock('../src/thirdparty/paymentgateway/TicketPaymentService');
 describe('#TicketService', () => {
 	let ticketService;
 	describe('building the ticket request object', () => {
@@ -262,6 +264,61 @@ describe('#TicketService', () => {
 			expect(logger.info).toHaveBeenNthCalledWith(4, `About to purchase ${mockTotalTickets} tickets`);
 			expect(getTotalBookingCostMock).toHaveBeenCalledWith(mockTicketsByType);
 			expect(logger.info).toHaveBeenNthCalledWith(5, `Successfully purchased ${mockTotalTickets} tickets for a total cost of £${mockTotalCost}`);
+		});
+	});
+	describe('paying for a booking', () => {
+		beforeEach(() => {
+			jest.clearAllMocks()
+			ticketService = new TicketService();
+		});
+		afterEach(() => {
+			jest.resetAllMocks();
+		});
+		it('pays the correct amount for the booking', () => {
+			const mockTicketsByType = { "ADULT": 1, "CHILD": 0, "INFANT": 0 };
+			jest.spyOn(CalculationService.prototype, 'getTotalTicketsByType')
+				.mockImplementation(() => {
+					return mockTicketsByType
+				});
+			jest.spyOn(CalculationService.prototype, 'getTotalSeats')
+				.mockImplementation(() => {
+					return 2;
+				});
+			const mockTotalCost = TICKET_COST_BY_TYPE.ADULT * 2;
+			jest.spyOn(CalculationService.prototype, 'getTotalBookingCost')
+				.mockImplementation(() => {
+					return mockTotalCost
+				})
+			jest.spyOn(SeatReservationService.prototype, 'reserveSeat')
+				.mockImplementation(() => { });
+			const ticketPaymentServiceMock = jest
+				.spyOn(TicketPaymentService.prototype, 'makePayment')
+				.mockImplementation(() => { });
+			const accountId = 111;
+			const fakeAdultTicketRequest = new TicketTypeRequest('ADULT', 2);
+			ticketService.purchaseTickets(accountId, fakeAdultTicketRequest)
+			expect(logger.info).toHaveBeenNthCalledWith(6, `About to make payment of £${mockTotalCost} for account ${accountId}`);
+			expect(ticketPaymentServiceMock).toHaveBeenCalledWith(accountId, mockTotalCost);
+			expect(logger.info).toHaveBeenNthCalledWith(7, `Successfully made payment of £${mockTotalCost} for account ${accountId}`);
+		});
+		it('throws an error if the number of seats is not an integer', () => {
+			const mockTicketsByType = { "ADULT": 1, "CHILD": 0, "INFANT": 0 };
+			jest.spyOn(CalculationService.prototype, 'getTotalTicketsByType')
+				.mockImplementation(() => {
+					return mockTicketsByType
+				});
+			jest.spyOn(CalculationService.prototype, 'getTotalSeats')
+				.mockImplementation(() => {
+					return 'fake-string';
+				});
+			jest.spyOn(TicketPaymentService.prototype, 'makePayment').mockImplementation(() => {
+				throw new InvalidPurchaseException(ERROR_MAP.NO_OF_SEATS_IS_NOT_AN_INTEGER)
+			});
+
+			const accountId = 12345
+			const fakeAdultTicketRequest = new TicketTypeRequest('ADULT', 1);
+			expect(() => ticketService.purchaseTickets(accountId, fakeAdultTicketRequest)).toThrow(new InvalidPurchaseException(ERROR_MAP.NO_OF_SEATS_IS_NOT_AN_INTEGER))
+			expect(logger.error).toHaveBeenCalledWith(ERROR_MAP.NO_OF_SEATS_IS_NOT_AN_INTEGER);
 		});
 	});
 });
