@@ -119,6 +119,22 @@ describe('#TicketService', () => {
 		afterEach(() => {
 			jest.resetAllMocks();
 		});
+		it('should not throw an InvalidPurchaseException when there are exactly 25 tickets requested', () => {
+			const mockTicketsByType = { "ADULT": 25 };
+			jest.spyOn(CalculationService.prototype, 'getTotalTicketsByType')
+				.mockImplementation(() => {
+					return mockTicketsByType
+				});
+			jest.spyOn(CalculationService.prototype, 'getTotalTicketCount')
+				.mockImplementation(() => {
+					return 25
+				});
+			const accountId = 12345;
+			const fakeAdultTicketRequest = new TicketTypeRequest('ADULT', 25);
+			const ticketService = new TicketService()
+			expect(() => ticketService.purchaseTickets(accountId, fakeAdultTicketRequest)).not.toThrow(new InvalidPurchaseException(ERROR_MAP.MAX_TICKETS_EXCEEDED))
+			expect(logger.error).not.toHaveBeenCalledWith();
+		});
 		it('should throw an InvalidPurchaseException when there are no tickets requested', () => {
 			const mockTicketsByType = {"ADULT": 0, "CHILD": 0, "INFANT": 0};
 			jest.spyOn(CalculationService.prototype, 'getTotalTicketsByType')
@@ -144,8 +160,8 @@ describe('#TicketService', () => {
 			expect(() => ticketService.purchaseTickets(accountId, fakeAdultTicketRequest, fakeChildTicketRequest, fakeInfantTicketRequest)).toThrow(new InvalidPurchaseException(ERROR_MAP.ADULT_TICKET_REQUIRED))
 			expect(logger.error).toHaveBeenCalledWith(ERROR_MAP.ADULT_TICKET_REQUIRED);
 		});
-		it('should throw an InvalidPurchaseException when there are more than 20 tickets requested', () => {
-			const mockTicketsByType = {"ADULT": 8, "CHILD": 9, "INFANT": 4};
+		it('should throw an InvalidPurchaseException when there are more than 25 tickets requested', () => {
+			const mockTicketsByType = {"ADULT": 26};
 			jest.spyOn(CalculationService.prototype, 'getTotalTicketsByType')
 				.mockImplementation(() => {
 					return mockTicketsByType
