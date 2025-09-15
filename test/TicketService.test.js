@@ -148,6 +148,20 @@ describe('#TicketService', () => {
 			expect(() => ticketService.purchaseTickets(accountId, null)).toThrow(new InvalidPurchaseException(ERROR_MAP.ADULT_TICKET_REQUIRED))
 			expect(logger.error).toHaveBeenCalledWith(ERROR_MAP.ADULT_TICKET_REQUIRED);
 		});
+		it('should throw an InvalidPurchaseException when there are negative values in the ticket object', () => {
+			const mockTicketsByType = { "ADULT": 0, "CHILD": 0, "INFANT": -1 };
+			jest.spyOn(CalculationService.prototype, 'getTotalTicketsByType')
+				.mockImplementation(() => {
+					return mockTicketsByType
+				});
+
+			const accountId = 12345;
+			const fakeAdultTicketRequest = new TicketTypeRequest('ADULT', 1);
+			const fakeChildTicketRequest = new TicketTypeRequest('CHILD', -1);
+			const fakeInfantTicketRequest = new TicketTypeRequest('INFANT', 0);
+			const ticketService = new TicketService()
+			expect(() => ticketService.purchaseTickets(accountId, fakeAdultTicketRequest, fakeChildTicketRequest, fakeInfantTicketRequest)).toThrow(new InvalidPurchaseException(ERROR_MAP.NEGATIVE_TICKET_COUNT_DETECTED))
+		});
 		it('should throw an InvalidPurchaseException when there a no adults in the booking', () => {
 			const mockTicketsByType = {"ADULT": 0, "CHILD": 5, "INFANT": 0};
 			jest.spyOn(CalculationService.prototype, 'getTotalTicketsByType')
