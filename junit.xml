@@ -1,19 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuites name="jest tests" tests="60" failures="0" errors="0" time="0.314">
-  <testsuite name="#TicketService" errors="0" failures="0" skipped="0" timestamp="2025-09-15T19:53:56" time="0.169" tests="17">
+<testsuites name="jest tests" tests="65" failures="0" errors="0" time="0.328">
+  <testsuite name="InvalidPurchaseException" errors="0" failures="0" skipped="0" timestamp="2025-09-15T20:03:20" time="0.136" tests="5">
+    <testcase classname="InvalidPurchaseException should be an instance of Error" name="InvalidPurchaseException should be an instance of Error" time="0.001">
+    </testcase>
+    <testcase classname="InvalidPurchaseException should be an instance of InvalidPurchaseException" name="InvalidPurchaseException should be an instance of InvalidPurchaseException" time="0">
+    </testcase>
+    <testcase classname="InvalidPurchaseException should set the name property correctly" name="InvalidPurchaseException should set the name property correctly" time="0.001">
+    </testcase>
+    <testcase classname="InvalidPurchaseException should set the message property correctly" name="InvalidPurchaseException should set the message property correctly" time="0">
+    </testcase>
+    <testcase classname="InvalidPurchaseException should have a stack trace" name="InvalidPurchaseException should have a stack trace" time="0.001">
+    </testcase>
+  </testsuite>
+  <testsuite name="#TicketService" errors="0" failures="0" skipped="0" timestamp="2025-09-15T20:03:20" time="0.064" tests="17">
     <testcase classname="#TicketService building the ticket request object should call getTotalTicketsByType to get a ticket request object" name="#TicketService building the ticket request object should call getTotalTicketsByType to get a ticket request object" time="0.001">
     </testcase>
-    <testcase classname="#TicketService building the ticket request object log the booking details before calling the validation service" name="#TicketService building the ticket request object log the booking details before calling the validation service" time="0.001">
+    <testcase classname="#TicketService building the ticket request object log the booking details before calling the validation service" name="#TicketService building the ticket request object log the booking details before calling the validation service" time="0">
     </testcase>
-    <testcase classname="#TicketService accountIdValidation accountId is a valid number should not throw an error if the account ID is a number greater than 0" name="#TicketService accountIdValidation accountId is a valid number should not throw an error if the account ID is a number greater than 0" time="0">
+    <testcase classname="#TicketService accountIdValidation accountId is a valid number should not throw an error if the account ID is a number greater than 0" name="#TicketService accountIdValidation accountId is a valid number should not throw an error if the account ID is a number greater than 0" time="0.001">
     </testcase>
-    <testcase classname="#TicketService accountIdValidation accountId is NOT valid should throw an InvalidPurchaseException when the accountId &lt; 1" name="#TicketService accountIdValidation accountId is NOT valid should throw an InvalidPurchaseException when the accountId &lt; 1" time="0.006">
+    <testcase classname="#TicketService accountIdValidation accountId is NOT valid should throw an InvalidPurchaseException when the accountId &lt; 1" name="#TicketService accountIdValidation accountId is NOT valid should throw an InvalidPurchaseException when the accountId &lt; 1" time="0.007">
     </testcase>
-    <testcase classname="#TicketService accountIdValidation accountId is NOT valid should throw an InvalidPurchaseException when the accountId is not a number" name="#TicketService accountIdValidation accountId is NOT valid should throw an InvalidPurchaseException when the accountId is not a number" time="0.001">
+    <testcase classname="#TicketService accountIdValidation accountId is NOT valid should throw an InvalidPurchaseException when the accountId is not a number" name="#TicketService accountIdValidation accountId is NOT valid should throw an InvalidPurchaseException when the accountId is not a number" time="0">
     </testcase>
-    <testcase classname="#TicketService accountIdValidation accountId is NOT valid should throw an InvalidPurchaseException when the accountId is not provided" name="#TicketService accountIdValidation accountId is NOT valid should throw an InvalidPurchaseException when the accountId is not provided" time="0">
+    <testcase classname="#TicketService accountIdValidation accountId is NOT valid should throw an InvalidPurchaseException when the accountId is not provided" name="#TicketService accountIdValidation accountId is NOT valid should throw an InvalidPurchaseException when the accountId is not provided" time="0.001">
     </testcase>
-    <testcase classname="#TicketService ticket type validation should not throw an InvalidPurchaseException when there are exactly 25 tickets requested" name="#TicketService ticket type validation should not throw an InvalidPurchaseException when there are exactly 25 tickets requested" time="0.001">
+    <testcase classname="#TicketService ticket type validation should not throw an InvalidPurchaseException when there are exactly 25 tickets requested" name="#TicketService ticket type validation should not throw an InvalidPurchaseException when there are exactly 25 tickets requested" time="0">
     </testcase>
     <testcase classname="#TicketService ticket type validation should throw an InvalidPurchaseException when there are no tickets requested" name="#TicketService ticket type validation should throw an InvalidPurchaseException when there are no tickets requested" time="0">
     </testcase>
@@ -23,35 +35,35 @@
     </testcase>
     <testcase classname="#TicketService ticket type validation should throw an InvalidPurchaseException when there are more than 25 tickets requested" name="#TicketService ticket type validation should throw an InvalidPurchaseException when there are more than 25 tickets requested" time="0">
     </testcase>
-    <testcase classname="#TicketService ticket type validation should throw an InvalidPurchaseException when there are more infants than adults" name="#TicketService ticket type validation should throw an InvalidPurchaseException when there are more infants than adults" time="0">
+    <testcase classname="#TicketService ticket type validation should throw an InvalidPurchaseException when there are more infants than adults" name="#TicketService ticket type validation should throw an InvalidPurchaseException when there are more infants than adults" time="0.001">
     </testcase>
     <testcase classname="#TicketService seat reservation reserves a seat for each adult and child" name="#TicketService seat reservation reserves a seat for each adult and child" time="0">
     </testcase>
-    <testcase classname="#TicketService seat reservation throws an error if the number of seats is not an integer" name="#TicketService seat reservation throws an error if the number of seats is not an integer" time="0.001">
+    <testcase classname="#TicketService seat reservation throws an error if the number of seats is not an integer" name="#TicketService seat reservation throws an error if the number of seats is not an integer" time="0">
     </testcase>
-    <testcase classname="#TicketService calculating the cost of the booking calculates the cost of the booking" name="#TicketService calculating the cost of the booking calculates the cost of the booking" time="0">
+    <testcase classname="#TicketService calculating the cost of the booking calculates the cost of the booking" name="#TicketService calculating the cost of the booking calculates the cost of the booking" time="0.001">
     </testcase>
-    <testcase classname="#TicketService paying for a booking pays the correct amount for the booking" name="#TicketService paying for a booking pays the correct amount for the booking" time="0.001">
+    <testcase classname="#TicketService paying for a booking pays the correct amount for the booking" name="#TicketService paying for a booking pays the correct amount for the booking" time="0">
     </testcase>
     <testcase classname="#TicketService paying for a booking throws an error if the number of seats is not an integer" name="#TicketService paying for a booking throws an error if the number of seats is not an integer" time="0">
     </testcase>
   </testsuite>
-  <testsuite name="#RequestValidationService" errors="0" failures="0" skipped="0" timestamp="2025-09-15T19:53:56" time="0.028" tests="19">
-    <testcase classname="#RequestValidationService #requestIdValidator when the account ID is valid does not throw an error" name="#RequestValidationService #requestIdValidator when the account ID is valid does not throw an error" time="0.001">
+  <testsuite name="#RequestValidationService" errors="0" failures="0" skipped="0" timestamp="2025-09-15T20:03:20" time="0.026" tests="19">
+    <testcase classname="#RequestValidationService #requestIdValidator when the account ID is valid does not throw an error" name="#RequestValidationService #requestIdValidator when the account ID is valid does not throw an error" time="0">
     </testcase>
-    <testcase classname="#RequestValidationService #requestIdValidator when the account ID is missing or invalid throws an error if the account ID is a string" name="#RequestValidationService #requestIdValidator when the account ID is missing or invalid throws an error if the account ID is a string" time="0.003">
+    <testcase classname="#RequestValidationService #requestIdValidator when the account ID is missing or invalid throws an error if the account ID is a string" name="#RequestValidationService #requestIdValidator when the account ID is missing or invalid throws an error if the account ID is a string" time="0.004">
     </testcase>
     <testcase classname="#RequestValidationService #requestIdValidator when the account ID is missing or invalid throws an error if the account ID contains symbols" name="#RequestValidationService #requestIdValidator when the account ID is missing or invalid throws an error if the account ID contains symbols" time="0">
     </testcase>
-    <testcase classname="#RequestValidationService #requestIdValidator when the account ID is missing or invalid throws an error if the account ID is a floating point number" name="#RequestValidationService #requestIdValidator when the account ID is missing or invalid throws an error if the account ID is a floating point number" time="0">
+    <testcase classname="#RequestValidationService #requestIdValidator when the account ID is missing or invalid throws an error if the account ID is a floating point number" name="#RequestValidationService #requestIdValidator when the account ID is missing or invalid throws an error if the account ID is a floating point number" time="0.001">
     </testcase>
-    <testcase classname="#RequestValidationService #requestIdValidator when the account ID is missing or invalid throws an error if the account ID is 0" name="#RequestValidationService #requestIdValidator when the account ID is missing or invalid throws an error if the account ID is 0" time="0.001">
+    <testcase classname="#RequestValidationService #requestIdValidator when the account ID is missing or invalid throws an error if the account ID is 0" name="#RequestValidationService #requestIdValidator when the account ID is missing or invalid throws an error if the account ID is 0" time="0">
     </testcase>
     <testcase classname="#RequestValidationService #requestIdValidator when the account ID is missing or invalid throws an error if the account ID is a negative number" name="#RequestValidationService #requestIdValidator when the account ID is missing or invalid throws an error if the account ID is a negative number" time="0">
     </testcase>
     <testcase classname="#RequestValidationService #requestIdValidator when the account ID is missing or invalid throws an error if the account ID is undefined" name="#RequestValidationService #requestIdValidator when the account ID is missing or invalid throws an error if the account ID is undefined" time="0">
     </testcase>
-    <testcase classname="#RequestValidationService #requestIdValidator when the account ID is missing or invalid throws an error if an account ID is not provided" name="#RequestValidationService #requestIdValidator when the account ID is missing or invalid throws an error if an account ID is not provided" time="0">
+    <testcase classname="#RequestValidationService #requestIdValidator when the account ID is missing or invalid throws an error if an account ID is not provided" name="#RequestValidationService #requestIdValidator when the account ID is missing or invalid throws an error if an account ID is not provided" time="0.001">
     </testcase>
     <testcase classname="#RequestValidationService #ticketTypeRequestValidator when the ticket request is valid does not throw an error" name="#RequestValidationService #ticketTypeRequestValidator when the ticket request is valid does not throw an error" time="0">
     </testcase>
@@ -59,9 +71,9 @@
     </testcase>
     <testcase classname="#RequestValidationService #ticketTypeRequestValidator when the ticket request is missing or invalid throws an error if an empty array is provided" name="#RequestValidationService #ticketTypeRequestValidator when the ticket request is missing or invalid throws an error if an empty array is provided" time="0">
     </testcase>
-    <testcase classname="#RequestValidationService #ticketTypeRequestValidator when the ticket request is missing or invalid throws an error if an undefined value is provided" name="#RequestValidationService #ticketTypeRequestValidator when the ticket request is missing or invalid throws an error if an undefined value is provided" time="0">
+    <testcase classname="#RequestValidationService #ticketTypeRequestValidator when the ticket request is missing or invalid throws an error if an undefined value is provided" name="#RequestValidationService #ticketTypeRequestValidator when the ticket request is missing or invalid throws an error if an undefined value is provided" time="0.001">
     </testcase>
-    <testcase classname="#RequestValidationService #ticketTypeRequestValidator when the ticket request is missing or invalid throws an error if a non-array value is provided" name="#RequestValidationService #ticketTypeRequestValidator when the ticket request is missing or invalid throws an error if a non-array value is provided" time="0.001">
+    <testcase classname="#RequestValidationService #ticketTypeRequestValidator when the ticket request is missing or invalid throws an error if a non-array value is provided" name="#RequestValidationService #ticketTypeRequestValidator when the ticket request is missing or invalid throws an error if a non-array value is provided" time="0">
     </testcase>
     <testcase classname="#RequestValidationService #ticketTypeRequestValidator when the ticket request is missing or invalid throws an error if a number is provided" name="#RequestValidationService #ticketTypeRequestValidator when the ticket request is missing or invalid throws an error if a number is provided" time="0">
     </testcase>
@@ -69,18 +81,14 @@
     </testcase>
     <testcase classname="#RequestValidationService #ticketTypeRequestValidator when the ticket request is missing or invalid throws an error if a boolean is provided" name="#RequestValidationService #ticketTypeRequestValidator when the ticket request is missing or invalid throws an error if a boolean is provided" time="0">
     </testcase>
-    <testcase classname="#RequestValidationService #ticketTypeRequestValidator when the ticket request is missing or invalid throws an error if the total number of tickets exceeds the maximum allowed" name="#RequestValidationService #ticketTypeRequestValidator when the ticket request is missing or invalid throws an error if the total number of tickets exceeds the maximum allowed" time="0">
+    <testcase classname="#RequestValidationService #ticketTypeRequestValidator when the ticket request is missing or invalid throws an error if the total number of tickets exceeds the maximum allowed" name="#RequestValidationService #ticketTypeRequestValidator when the ticket request is missing or invalid throws an error if the total number of tickets exceeds the maximum allowed" time="0.001">
     </testcase>
-    <testcase classname="#RequestValidationService #ticketTypeRequestValidator when the ticket request is missing or invalid throws an error if no adult tickets are included in the request" name="#RequestValidationService #ticketTypeRequestValidator when the ticket request is missing or invalid throws an error if no adult tickets are included in the request" time="0.001">
+    <testcase classname="#RequestValidationService #ticketTypeRequestValidator when the ticket request is missing or invalid throws an error if no adult tickets are included in the request" name="#RequestValidationService #ticketTypeRequestValidator when the ticket request is missing or invalid throws an error if no adult tickets are included in the request" time="0">
     </testcase>
     <testcase classname="#RequestValidationService #ticketTypeRequestValidator when the ticket request is missing or invalid throws an error if there are more infants than adults in the request" name="#RequestValidationService #ticketTypeRequestValidator when the ticket request is missing or invalid throws an error if there are more infants than adults in the request" time="0">
     </testcase>
   </testsuite>
-  <testsuite name="logger" errors="0" failures="0" skipped="0" timestamp="2025-09-15T19:53:56" time="0.021" tests="1">
-    <testcase classname="logger should call dwpNodeLogger with correct arguments" name="logger should call dwpNodeLogger with correct arguments" time="0">
-    </testcase>
-  </testsuite>
-  <testsuite name="#CalculationService" errors="0" failures="0" skipped="0" timestamp="2025-09-15T19:53:56" time="0.018" tests="10">
+  <testsuite name="#CalculationService" errors="0" failures="0" skipped="0" timestamp="2025-09-15T20:03:20" time="0.024" tests="10">
     <testcase classname="#CalculationService #getTotalTicketsByType should return a valid ticket request object" name="#CalculationService #getTotalTicketsByType should return a valid ticket request object" time="0">
     </testcase>
     <testcase classname="#CalculationService #getTotalTicketCount should return the total number of tickets" name="#CalculationService #getTotalTicketCount should return the total number of tickets" time="0">
@@ -93,7 +101,7 @@
     </testcase>
     <testcase classname="#CalculationService getTotalSeats books the correct seat total for a mixed booking" name="#CalculationService getTotalSeats books the correct seat total for a mixed booking" time="0">
     </testcase>
-    <testcase classname="#CalculationService #getTotalBookingCost charges the correct amount for an ADULT should return a the correct cost for an adult" name="#CalculationService #getTotalBookingCost charges the correct amount for an ADULT should return a the correct cost for an adult" time="0">
+    <testcase classname="#CalculationService #getTotalBookingCost charges the correct amount for an ADULT should return a the correct cost for an adult" name="#CalculationService #getTotalBookingCost charges the correct amount for an ADULT should return a the correct cost for an adult" time="0.001">
     </testcase>
     <testcase classname="#CalculationService #getTotalBookingCost it charges the correct amount for a CHILD should return a the correct cost for a child" name="#CalculationService #getTotalBookingCost it charges the correct amount for a CHILD should return a the correct cost for a child" time="0">
     </testcase>
@@ -102,8 +110,12 @@
     <testcase classname="#CalculationService #getTotalBookingCost it charges the correct amount for an multiple ticket types should return a the correct cost for an infant" name="#CalculationService #getTotalBookingCost it charges the correct amount for an multiple ticket types should return a the correct cost for an infant" time="0">
     </testcase>
   </testsuite>
-  <testsuite name="TicketTypeRequest" errors="0" failures="0" skipped="0" timestamp="2025-09-15T19:53:56" time="0.011" tests="6">
-    <testcase classname="TicketTypeRequest should create an instance with valid type and number of tickets" name="TicketTypeRequest should create an instance with valid type and number of tickets" time="0.001">
+  <testsuite name="logger" errors="0" failures="0" skipped="0" timestamp="2025-09-15T20:03:20" time="0.016" tests="1">
+    <testcase classname="logger should call dwpNodeLogger with correct arguments" name="logger should call dwpNodeLogger with correct arguments" time="0.001">
+    </testcase>
+  </testsuite>
+  <testsuite name="TicketTypeRequest" errors="0" failures="0" skipped="0" timestamp="2025-09-15T20:03:20" time="0.011" tests="6">
+    <testcase classname="TicketTypeRequest should create an instance with valid type and number of tickets" name="TicketTypeRequest should create an instance with valid type and number of tickets" time="0">
     </testcase>
     <testcase classname="TicketTypeRequest should throw if type is invalid" name="TicketTypeRequest should throw if type is invalid" time="0.002">
     </testcase>
@@ -113,15 +125,15 @@
     </testcase>
     <testcase classname="TicketTypeRequest should allow zero tickets" name="TicketTypeRequest should allow zero tickets" time="0">
     </testcase>
-    <testcase classname="TicketTypeRequest should not allow negative ticket numbers" name="TicketTypeRequest should not allow negative ticket numbers" time="0.001">
+    <testcase classname="TicketTypeRequest should not allow negative ticket numbers" name="TicketTypeRequest should not allow negative ticket numbers" time="0">
     </testcase>
   </testsuite>
-  <testsuite name="Config.js" errors="0" failures="0" skipped="0" timestamp="2025-09-15T19:53:56" time="0.032" tests="7">
+  <testsuite name="Config.js" errors="0" failures="0" skipped="0" timestamp="2025-09-15T20:03:20" time="0.01" tests="7">
     <testcase classname="Config.js LOGGING_LEVEL should be &quot;info&quot;" name="Config.js LOGGING_LEVEL should be &quot;info&quot;" time="0">
     </testcase>
-    <testcase classname="Config.js BASE_RESERVATION_OBJECT should have correct initial values" name="Config.js BASE_RESERVATION_OBJECT should have correct initial values" time="0">
+    <testcase classname="Config.js BASE_RESERVATION_OBJECT should have correct initial values" name="Config.js BASE_RESERVATION_OBJECT should have correct initial values" time="0.001">
     </testcase>
-    <testcase classname="Config.js TICKET_BOOKING_CONSTANTS should have correct structure and values" name="Config.js TICKET_BOOKING_CONSTANTS should have correct structure and values" time="0.001">
+    <testcase classname="Config.js TICKET_BOOKING_CONSTANTS should have correct structure and values" name="Config.js TICKET_BOOKING_CONSTANTS should have correct structure and values" time="0">
     </testcase>
     <testcase classname="Config.js MAX_TICKETS should be 25" name="Config.js MAX_TICKETS should be 25" time="0">
     </testcase>
