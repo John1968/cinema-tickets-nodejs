@@ -30,7 +30,7 @@ export default class TicketService {
   purchaseTickets(accountId, ...ticketTypeRequests) {
 		// build ticket request object
 		this.#ticketsByType = this.#calculationService.getTotalTicketsByType(ticketTypeRequests);
-    logger.info(`About to validate ticket request for Account: ${accountId}. Booking comprises ${this.#ticketsByType.ADULT} adult(s), ${this.#ticketsByType.CHILD} child(ren) and ${this.#ticketsByType.INFANT} infant(s)`)
+    logger.info(`About to validate ticket request for Account: ${accountId}. Booking comprises ${this.#ticketsByType.ADULT} adult(s), ${this.#ticketsByType.CHILD} child(ren) and ${this.#ticketsByType.INFANT} infant(s)`);
 		try {
 			// validate the input parameters
 			this.#requestValidationService.requestIdValidator(accountId);
@@ -57,8 +57,7 @@ export default class TicketService {
 		} catch(err) {
       logger.error(err.message);
       throw new InvalidPurchaseException(err.message);
-		}
+		};
 		
-    // throws InvalidPurchaseException
-  }
-}
+  };
+};
