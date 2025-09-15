@@ -8,4 +8,7 @@ export default class CalculationService {
 	getTotalTicketCount(ticketsByType) {
 		return Object.values(ticketsByType).reduce((total, value) => total + value, 0);
 	};
+	getTotalSeats(ticketsByType) {
+		return ticketsByType.ADULT + ticketsByType.CHILD;
+	};
 };
