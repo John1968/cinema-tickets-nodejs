@@ -1,10 +1,10 @@
 import TicketTypeRequest from './lib/TicketTypeRequest.js';
-import SeatReservationService from '../thirdparty/seatbooking/SeatReservationService';
-import TicketPaymentService from '../thirdparty/paymentgateway/TicketPaymentService';
+import SeatReservationService from '../thirdparty/seatbooking/SeatReservationService.js';
+import TicketPaymentService from '../thirdparty/paymentgateway/TicketPaymentService.js';
 import InvalidPurchaseException from './lib/InvalidPurchaseException.js';
-import logger from '../pairtest/lib/logger';
-import CalculationService from './lib/CalculationService';
-import RequestValidationService from './lib/RequestValidationService';
+import logger from '../pairtest/lib/logger.js';
+import CalculationService from './lib/CalculationService.js';
+import RequestValidationService from './lib/RequestValidationService.js';
 
 
 export default class TicketService {
@@ -53,7 +53,7 @@ export default class TicketService {
 			logger.info(`About to make payment of £${this.#totalAmountToPay} for account ${accountId}`);
 			this.#ticketPaymentService.makePayment(accountId, this.#totalAmountToPay);
 			logger.info(`Successfully made payment of £${this.#totalAmountToPay} for account ${accountId}`);
-
+			
 		} catch(err) {
       logger.error(err.message);
       throw new InvalidPurchaseException(err.message);

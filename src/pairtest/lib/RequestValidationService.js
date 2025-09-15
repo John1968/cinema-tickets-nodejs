@@ -1,6 +1,6 @@
-import InvalidPurchaseException from '../lib/InvalidPurchaseException';
-import CalculationService from './CalculationService';
-import { MAX_TICKETS, MIN_TICKETS, ERROR_MAP } from './Config';
+import InvalidPurchaseException from '../lib/InvalidPurchaseException.js';
+import CalculationService from './CalculationService.js';
+import { MAX_TICKETS, MIN_TICKETS, ERROR_MAP } from './Config.js';
 
 export default class RequestValidationService {
     requestIdValidator(accountId) {

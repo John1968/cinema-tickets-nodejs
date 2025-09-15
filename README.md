@@ -55,6 +55,18 @@ This approach will helped to ensure the requirements of the brief have been achi
 
 I have used the Jest testing framework for both the unit tests and coverage.
 
+To run the unit tests in isolation, use the following command
+
+```npm run jest:test```
+
+or
+
+```npm test```
+
+To run the tests with coverage, use
+
+```npm test quality:coverage```
+
 ## Code Quality
 For code quality, I have used `eslint` and `@dwp/eslint-config-base` to lint code using DWP standards for NodeJS.
 
