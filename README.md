@@ -73,3 +73,9 @@ For code quality, I have used `eslint` and `@dwp/eslint-config-base` to lint cod
 To run the lint tests, use the following command:
 
 ```npm run quality:lint```
+
+## Ideas for further enhancements
+- add jsdoc
+- additiopnal testing, e.g. BDD testing with `Cypress` or `Cucumber`
+- add pre-commit to add a fail-fast check of any issues
+- Github workflows
