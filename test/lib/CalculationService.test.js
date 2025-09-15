@@ -1,4 +1,6 @@
 import { expect } from'@jest/globals';
+import { TICKET_COST_BY_TYPE } from '../../src/pairtest/lib/Config';
+
 import CalculationService from '../../src/pairtest/lib/CalculationService';
 import TicketTypeRequest from '../../src/pairtest/lib/TicketTypeRequest';
 
@@ -42,5 +44,41 @@ describe('#CalculationService', () => {
             const result = calculationService.getTotalSeats(ticketsByType);
             expect(result).toEqual(5);
         });
-    })
+    });
+    describe('#getTotalBookingCost', () => {
+        const adultTicketRequest = new TicketTypeRequest('ADULT', 1);
+        const childTicketRequest = new TicketTypeRequest('CHILD', 1);
+        const infantTicketRequest = new TicketTypeRequest('INFANT', 1);
+        const costOfAdultTicket = TICKET_COST_BY_TYPE.ADULT;
+        const costOfChildTicket = TICKET_COST_BY_TYPE.CHILD;
+        const costOfInfantTicket = TICKET_COST_BY_TYPE.INFANT;
+        describe('charges the correct amount for an ADULT', () => {
+            const requestForOneAdultTicket = [adultTicketRequest];
+            const result = calculationService.getTotalBookingCost(requestForOneAdultTicket);
+            it('should return a the correct cost for an adult', () => {
+                expect(result).toEqual(costOfAdultTicket);
+            });
+        });
+        describe('it charges the correct amount for a CHILD', () => {
+            const requestForOneChildTicket = [childTicketRequest];
+            const result = calculationService.getTotalBookingCost(requestForOneChildTicket);
+            it('should return a the correct cost for a child', () => {
+                expect(result).toEqual(costOfChildTicket);
+            });
+        });
+        describe('it charges the correct amount for an INFANT', () => {
+            const requestForOneInfantTicket = [infantTicketRequest];
+            const result = calculationService.getTotalBookingCost(requestForOneInfantTicket);
+            it('should return a the correct cost for an infant', () => {
+                expect(result).toEqual(costOfInfantTicket);
+            });
+        });
+        describe('it charges the correct amount for an multiple ticket types', () => {
+            const requestForMultipleTicketTypes = [adultTicketRequest, childTicketRequest, infantTicketRequest];
+            const result = calculationService.getTotalBookingCost(requestForMultipleTicketTypes);
+            it('should return a the correct cost for an infant', () => {
+                expect(result).toEqual(costOfAdultTicket + costOfChildTicket + costOfInfantTicket);
+            });
+        });
+    });
 });

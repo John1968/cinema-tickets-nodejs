@@ -28,4 +28,9 @@ export const ERROR_MAP = {
     INFANT_WITHOUT_ADULT: 'Each infant must be accompanied by an adult',
     INVALID_TICKET_TYPE: 'Ticket type must be one of the following: ADULT, CHILD, INFANT',
     NEGATIVE_TICKET_COUNT: 'Number of tickets requested cannot be negative',
-}
+};
+export const TICKET_COST_BY_TYPE = {
+    ADULT: 25,
+    CHILD: 15,
+    INFANT: 0,
+};

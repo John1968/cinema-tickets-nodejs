@@ -12,6 +12,8 @@ export default class TicketService {
 	#requestValidationService
 	#seatsRequired
 	#seatReservationService
+	#totalTicketsToPurchase
+	#totalAmountToPay
 
 
 
@@ -34,9 +36,14 @@ export default class TicketService {
 		this.#requestValidationService.ticketTypeRequestValidator(ticketTypeRequests);
 		// reserve the seats
 		this.#seatsRequired = this.#calculationService.getTotalSeats(this.#ticketsByType);
-		logger.info(`about to reserve ${this.#seatsRequired} seat(s) for account ${accountId}`);
+		logger.info(`About to reserve ${this.#seatsRequired} seat(s) for account ${accountId}`);
 		this.#seatReservationService.reserveSeat(accountId, this.#seatsRequired);
-		
+		logger.info(`Successfully reserved ${this.#seatsRequired} seat(s) for account ${accountId}`);
+		// calculate the total cost
+		this.#totalTicketsToPurchase = this.#calculationService.getTotalTicketCount(this.#ticketsByType);
+		logger.info(`About to purchase ${this.#totalTicketsToPurchase} tickets`);
+		this.#totalAmountToPay = this.#calculationService.getTotalBookingCost(this.#ticketsByType);
+		logger.info(`Successfully purchased ${this.#totalTicketsToPurchase} tickets for a total cost of £${this.#totalAmountToPay}`);
 
 		} catch(err) {
       logger.error(err.message);
